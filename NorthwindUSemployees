@@ -1,0 +1,2 @@
+--select the employers in the USA and order by the data hired --
+select LastName, FirstName, Title,  HireDate from Employees where Country='USA' and order by HireDate
