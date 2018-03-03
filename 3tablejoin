@@ -1,0 +1,14 @@
+--shows which product haas given the greatest discount over all orders--
+select Products.ProductID, Products.ProductName, Suppliers.CompanyName,
+sum([Order Details].Discount*[Order Details].Quantity*[Order Details].UnitPrice) as TotalDiscount
+from Products, Suppliers, [Order Details]
+where Products.ProductID=[Order Details].ProductID and Products.SupplierID=Suppliers.SupplierID and [Order Details].Discount>0
+group by Products.ProductID,  Products.ProductName, Suppliers.CompanyName
+
+-- shows which supplier has given biggest discount --
+select Suppliers.SupplierID, Suppliers.CompanyName,
+sum([Order Details].Discount*[Order Details].Quantity*[Order Details].UnitPrice) as TotalDiscount
+from Products, Suppliers, [Order Details]
+where Products.ProductID=[Order Details].ProductID and Products.SupplierID=Suppliers.SupplierID and [Order Details].Discount>0
+group by  Suppliers.SupplierID, Suppliers.CompanyName, Products.ProductID,  Products.ProductName
+order by TotalDiscount desc
