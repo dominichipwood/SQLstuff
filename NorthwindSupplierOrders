@@ -1,0 +1,11 @@
+-- Using the NorthWind dataebase available at from micorsoft. I join 2 tables and group by a convenient id --
+
+--The table created lists the suppliers and how many products are on order from each, and totals the cost of the orders
+for each --
+
+select Suppliers.SupplierID, Suppliers.CompanyName, sum(Products.UnitsOnOrder) as TotalOrdered,  
+sum(Products.UnitsOnOrder*Products.UnitPrice) as TotalCost
+from Products, Suppliers
+where Products.SupplierID=Suppliers.SupplierID
+group by Suppliers.SupplierID, Suppliers.CompanyName
+
