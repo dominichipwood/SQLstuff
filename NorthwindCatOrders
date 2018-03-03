@@ -1,0 +1,10 @@
+-- Similar to NorthWindSupplierOrders, I join 2 tables and group by a convenient id --
+
+--The table created lists the how many products are on order, and totals the cost of the orders
+for each category of item --
+
+select Categories.Categoryid, Categories.CategoryName,
+sum(Products.UnitsOnOrder) as TotalOrdered, sum(Products.UnitsOnOrder*Products.UnitPrice) as TotalCost
+from categories, Products
+where Categories.CategoryID=Products.CategoryID
+group by Categories.CategoryID, Categories.CategoryName, Products.CategoryID
